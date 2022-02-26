@@ -26,22 +26,30 @@ const displayPlayer = (players) => {
         const parent = document.getElementById("player-container")
         const div = document.createElement("div");
         div.innerHTML = `
-        <div class="card border text-center mt-5">
+        <div class="card border text-center mt-5 delete-card">
         <div class="pro-pic">
-            <img width="200px" src="${player?.strThumb}" alt="" class="img-fluid rounded-3">
+            <img width="200px" src="${player.strThumb}" alt="" class="img-fluid rounded-3">
         </div>
             <h1>Name: ${player.strPlayer}</h1>
             <h5>Country: ${player.strNationality}</h5>
             <p></p>
             <div class="allbutton">
                 <button onclick="getDetails('${player.idPlayer}')" class="btn btn-success"><a class="text-white text-decoration-none" href="#details-container">Details</a></button>
-                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-danger" id="click" >Delete</button>
             </div>
         </div>
         `
         parent.appendChild(div);
+        
+        
     }
-    
+    // delete 
+    const click = document.getElementById("player-container")
+        click.addEventListener("click",(e) => {
+            if(e.target.id === "click"){
+                e.target.parentNode.parentNode.style.display = "none"
+            }
+        }) 
 }
 
 const getDetails = async (info) => {
@@ -64,3 +72,4 @@ const searchPlayer = (details) => {
     </div>
     `
 }
+
